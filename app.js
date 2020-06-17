@@ -37,7 +37,7 @@ const render = require("./lib/htmlRenderer");
 
 let employee = [];
 
-
+ear
 const managerInfo= [
   {
     type: "input",
@@ -141,7 +141,7 @@ const internInfo = [
 
 inquirer.prompt(managerInfo).then((data) => {
   const manObj = new Manager(data.name, data.id, data.email, data.officeNumber);
-  employeeArr.push(manObj);
+  employee.push(manObj);
   
     let newEmployee = data.employees;
  
@@ -150,19 +150,19 @@ inquirer.prompt(managerInfo).then((data) => {
              inquirer.prompt(engineerInfo).then((data) => {
              let newEmployee = data.employees;
              let engObj = new Engineer(data.name, data.id, data.email, data.github);
-             employeeArr.push(engObj);
+             employee.push(engObj);
              getData(newEmployee);
       });
     } else if (newEmployee === "Intern") {
         inquirer.prompt(internInfo).then((data) => {
         let newEmployee = data.employees;
         let intObj = new Intern(data.name, data.id, data.email, data.school);
-        employeeArr.push(intObj);
+        employee.push(intObj);
         getData(newEmployee);
       });
     } else {
-      console.log(employeeArr);
-      fs.writeFile(outputPath, render(employeeArr), (err) => {
+      console.log(employee);
+      fs.writeFile(outputPath, render(employee), (err) => {
         if (err) {
           return console.log(err);
         }
